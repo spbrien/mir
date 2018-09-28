@@ -94,7 +94,7 @@ def blueprint_factory(app):
             writer.writeheader()
             for item in results:
                 writer.writerow({
-                    k: v.decode('ascii', 'ignore') if isinstance(v, basestring) else v
+                    k: v.encode('ascii', 'ignore') if isinstance(v, basestring) else v
                     for k, v in item.iteritems()
                 })
             csvfile.seek(0)
