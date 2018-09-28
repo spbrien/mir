@@ -93,7 +93,10 @@ def blueprint_factory(app):
             writer = csv.DictWriter(csvfile, fieldnames=list(set(results[0].keys() + fieldnames)))
             writer.writeheader()
             for item in results:
-                writer.writerow({k: v.decode('ascii', 'ignore') for k, v in item.iteritems()})
+                writer.writerow({
+                    k: v.decode('ascii', 'ignore') if isinstance(v, basestring) else v
+                    for k, v in item.iteritems()
+                })
             csvfile.seek(0)
             return send_file(csvfile, attachment_filename="export.csv")
         else:
