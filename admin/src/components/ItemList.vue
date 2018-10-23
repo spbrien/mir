@@ -3,6 +3,7 @@
     <div class="row align-center">
       <div class="columns small-12 medium-8 secondary-menu padding-lg">
         <input type="text" :placeholder="`Search ${listTitle.replace('_', ' ')}`" v-model="searchTerm">
+
         <ul class="secondary-item-list">
           <li class="secondary-item" v-for="item in itemList" v-if="currentCollection && currentCollection._items">
             <router-link :to="{name: 'ItemEditor', params: {type: $route.params.type, id: item._id}}">
@@ -52,7 +53,7 @@ export default {
       this.getCurrentCollection({
         resourceType: this.$route.params.type,
         params: {
-          max_results: 500,
+          max_results: 5000,
           projection: {
             title: 1,
           }
