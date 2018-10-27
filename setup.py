@@ -12,7 +12,6 @@ with open('HISTORY.md') as history_file:
     history = history_file.read()
 
 requirements = [
-    'Click>=6.0',
     'ansible==2.5.0',
     'asn1crypto==0.24.0',
     'bcrypt==3.1.4',
@@ -76,7 +75,7 @@ test_requirements = [
 
 setup(
     name='mir',
-    version='1.2.7',
+    version='1.2.8',
     description="Mir API Framework",
     long_description=readme + '\n\n' + history,
     author="Steven Brien",
