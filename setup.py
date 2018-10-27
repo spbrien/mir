@@ -12,7 +12,6 @@ with open('HISTORY.md') as history_file:
     history = history_file.read()
 
 requirements = [
-    'Click>=6.0',
     'ansible==2.5.0',
     'asn1crypto==0.24.0',
     'bcrypt==3.1.4',
