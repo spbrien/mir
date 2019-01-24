@@ -1,5 +1,4 @@
 import io
-import StringIO
 import base64
 import json
 
