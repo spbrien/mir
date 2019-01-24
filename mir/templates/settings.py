@@ -4,6 +4,7 @@
 # Documentation coming soon
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+from __future__ import absolute_import
 import os
 
 # Optional AWS Storage

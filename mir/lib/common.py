@@ -4,6 +4,7 @@
 Shared application utility functions.
 """
 
+from __future__ import absolute_import
 import os
 import importlib
 from base64 import b64encode
@@ -13,6 +14,7 @@ import bcrypt
 from flask import current_app as app
 
 from mir.config import APP_DIR, HAS_PROJECT_ROOT
+import six
 
 # -----------------------------------
 # Factory Meta Programming Helpers
@@ -88,7 +90,7 @@ def get_models():
     def process_auth(v):
         auth = {}
         for key, value in v.items():
-            if key == 'authentication' and isinstance(value, basestring):
+            if key == 'authentication' and isinstance(value, six.string_types):
                 v[key] = auth[value]
         return v
 
@@ -106,7 +108,7 @@ def get_models():
     def create_domain(all_models):
         return {
             k: process_auth(v)
-            for d in filter(lambda x: x, all_models)
+            for d in [x for x in all_models if x]
             for k, v in d.items()
         }
 

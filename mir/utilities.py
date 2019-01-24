@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 import os
 import copy
 import json
 import string
 import binascii
 from subprocess import call, Popen, check_call, check_output, STDOUT
+import six
 
 FNULL = open(os.devnull, 'w')
 
@@ -64,7 +66,7 @@ def remove_read_only(v):
 
 def translations(model, languages=None):
     schema = model['schema']
-    nested = { k: remove_read_only(v) for k, v in copy.deepcopy(schema).iteritems() }
+    nested = { k: remove_read_only(v) for k, v in six.iteritems(copy.deepcopy(schema)) }
     if nested.get('slug', False):
         nested.pop('slug')
 
@@ -102,7 +104,7 @@ def translations(model, languages=None):
             }
         }
     else:
-        for idx, (abbrev, language) in enumerate(languages.iteritems()):
+        for idx, (abbrev, language) in enumerate(six.iteritems(languages)):
             schema[abbrev] = {
                 "type": "dict",
                 "schema": nested,

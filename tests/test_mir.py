@@ -4,6 +4,7 @@
 """Tests for `mir` package."""
 
 
+from __future__ import absolute_import
 import unittest
 from click.testing import CliRunner
 
@@ -28,7 +29,7 @@ class TestMir(unittest.TestCase):
         runner = CliRunner()
         result = runner.invoke(cli.main)
         assert result.exit_code == 0
-        assert 'mir.cli.main' in result.output
+        assert 'Usage:' in result.output
         help_result = runner.invoke(cli.main, ['--help'])
         assert help_result.exit_code == 0
         assert '--help  Show this message and exit.' in help_result.output

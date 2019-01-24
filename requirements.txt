@@ -5,10 +5,11 @@ requests
 bleach
 boto3
 flask-cors
-bucketstore
 gunicorn
-jinja2
-cloudinary
+Jinja2
 ansible
+paramiko
 gevent
 PyJWT
+Pillow
+six

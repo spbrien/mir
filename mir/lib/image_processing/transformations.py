@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 from PIL import Image, ImageFilter, ImageEnhance, ImageOps, ImageDraw
+from six.moves import range
 
 # ---------------------------------
 # Transformation Functions
