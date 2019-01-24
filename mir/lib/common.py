@@ -108,7 +108,7 @@ def get_models():
     def create_domain(all_models):
         return {
             k: process_auth(v)
-            for d in filter(lambda x: x, all_models)
+            for d in [x for x in all_models if x]
             for k, v in d.items()
         }
 
