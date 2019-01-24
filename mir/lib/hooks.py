@@ -3,6 +3,7 @@
 A factory for registering all custom hooks from the hooks directory.
 """
 
+from __future__ import absolute_import
 import os
 import json
 import importlib

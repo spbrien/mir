@@ -4,6 +4,7 @@
 
 from __future__ import unicode_literals
 
+from __future__ import absolute_import
 import os
 import sys
 import multiprocessing
@@ -21,12 +22,12 @@ from eve.io.mongo.media import GridFSMediaStorage
 from flask import request, current_app as app
 from flask_cors import CORS
 
-from lib.common import get_settings_dict, get_models
-from lib.hooks import hooks_factory
-from lib.blueprints import blueprint_factory
-from lib.bootstrap import create_admin
+from .lib.common import get_settings_dict, get_models
+from .lib.hooks import hooks_factory
+from .lib.blueprints import blueprint_factory
+from .lib.bootstrap import create_admin
 
-from config import APP_DIR
+from .config import APP_DIR
 
 
 # ------------------------------

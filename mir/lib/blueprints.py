@@ -3,6 +3,7 @@
 A factory for registering all blueprints as custom endpoints from the routes directory.
 """
 
+from __future__ import absolute_import
 import os
 import io
 import csv
@@ -27,6 +28,7 @@ from mir.lib.common import get_attribute_names
 from mir.lib.images import init_image_manipulation_api
 from mir.lib.templating import template_factory
 from mir.config import APP_DIR, HAS_PROJECT_ROOT
+import six
 # Add additional default routes manually
 
 admin_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'admin')
@@ -60,7 +62,7 @@ def blueprint_factory(app):
         authorized = app.auth.check_auth(token, None, None, "POST")
         domain = app.config.get('DOMAIN')
         schema = domain.get(resource, {})
-        fieldnames = schema.get('schema', {}).keys()
+        fieldnames = list(schema.get('schema', {}).keys())
 
         if not authorized:
             status_code = 400
@@ -90,12 +92,12 @@ def blueprint_factory(app):
             for item in results:
                 item.pop('_links', None)
             csvfile = io.BytesIO()
-            writer = csv.DictWriter(csvfile, fieldnames=list(set(results[0].keys() + fieldnames)))
+            writer = csv.DictWriter(csvfile, fieldnames=list(set(list(results[0].keys()) + fieldnames)))
             writer.writeheader()
             for item in results:
                 writer.writerow({
-                    k: v.encode('ascii', 'ignore') if isinstance(v, basestring) else v
-                    for k, v in item.iteritems()
+                    k: v.encode('ascii', 'ignore') if isinstance(v, six.string_types) else v
+                    for k, v in six.iteritems(item)
                 })
             csvfile.seek(0)
             return send_file(csvfile, attachment_filename="export.csv")
