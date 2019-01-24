@@ -8,6 +8,10 @@ from __future__ import absolute_import
 import os
 import sys
 import multiprocessing
+
+import gevent.monkey
+gevent.monkey.patch_all()
+
 import gunicorn.app.base
 from gunicorn.six import iteritems
 
