@@ -1,1 +1,2 @@
-import default_models
+from __future__ import absolute_import
+from . import default_models

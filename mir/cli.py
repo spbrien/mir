@@ -2,6 +2,7 @@
 
 """Console script for mir."""
 
+from __future__ import absolute_import
 import os
 import re
 import shutil
@@ -9,7 +10,7 @@ import shutil
 import click
 import requests
 
-from utilities import run_call, generate_password, generate_secret_key
+from .utilities import run_call, generate_password, generate_secret_key
 
 templates_path = os.path.join(
     os.path.dirname(os.path.realpath(__file__)), 'templates'
@@ -34,7 +35,7 @@ def main(args=None):
 @main.command()
 @click.argument('name')
 def init(name):
-    from lib.templating import template_factory
+    from .lib.templating import template_factory
 
     name = validate_name(None, None, name)
 
@@ -115,13 +116,13 @@ def init(name):
 @main.command()
 @click.option('--port', '-p', default='8080')
 def start(port):
-    from mir import start_app
+    from .mir import start_app
     start_app(port=port)
 
 @main.command()
 @click.option('--port', '-p', default='8080')
 def dev(port):
-    from mir import start_app
+    from .mir import start_app
     start_app(reload=True, port=port)
 
 
@@ -135,7 +136,7 @@ def dev(port):
 @click.option('--example', '-e', is_flag=True, default=False)
 @click.option('--url', '-u')
 def model(name, example, url):
-    from config import APP_DIR
+    from .config import APP_DIR
 
     out_dir = os.path.join(APP_DIR, 'models')
     if not example:
@@ -144,7 +145,7 @@ def model(name, example, url):
             with open(os.path.join(out_dir, '%s.py' % name), 'w') as f:
                 f.write(r.text)
         else:
-            from lib.templating import template_factory
+            from .lib.templating import template_factory
             data = {
                 'name': name,
             }
@@ -169,7 +170,7 @@ def model(name, example, url):
 )
 @click.option('--url', '-u')
 def route(name, url):
-    from config import APP_DIR
+    from .config import APP_DIR
 
     out_dir = os.path.join(APP_DIR, 'routes')
 
@@ -178,7 +179,7 @@ def route(name, url):
         with open(os.path.join(out_dir, '%s.py' % name), 'w') as f:
             f.write(r.text)
     else:
-        from lib.templating import template_factory
+        from .lib.templating import template_factory
         data = {
             'name': name,
         }
@@ -216,7 +217,7 @@ def route(name, url):
 )
 @click.option('--url', '-u')
 def hook(name, timing, method, resource, url):
-    from config import APP_DIR
+    from .config import APP_DIR
 
     out_dir = os.path.join(APP_DIR, 'hooks')
 
@@ -226,7 +227,7 @@ def hook(name, timing, method, resource, url):
         with open(os.path.join(out_dir, '%s.py' % name), 'w') as f:
             f.write(r.text)
     else:
-        from lib.templating import template_factory
+        from .lib.templating import template_factory
 
         def validate_timing(value):
             if value == 'pre' or value == 'post':
@@ -259,7 +260,7 @@ def hook(name, timing, method, resource, url):
 @main.command()
 @click.argument('environment')
 def deploy(environment):
-    from config import ROOT_DIR, APP_DIR
+    from .config import ROOT_DIR, APP_DIR
 
     if environment == 'local':
         click.echo(click.style('\n[-] Deploying to the local environment\n', bold=True, fg='white'), err=False)

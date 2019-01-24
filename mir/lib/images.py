@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import io
 import base64
 import json
@@ -12,6 +13,7 @@ from eve.methods import getitem
 from mir.lib.image_processing.transformations import funcs
 from mir.lib.image_processing.factory import process
 from mir.lib.image_processing.validation import schema
+import six
 
 
 v = Validator()
@@ -68,7 +70,7 @@ def init_image_manipulation_api(app):
                     format=instructions.get(
                         'format',
                         get_format_for_content_type(content_type)
-                            if 'dotpattern' not in instructions.keys()
+                            if 'dotpattern' not in list(instructions.keys())
                             else 'PNG'
                     ),
                     quality=instructions.get('quality', 95)
@@ -76,7 +78,7 @@ def init_image_manipulation_api(app):
 
                 # Run Process Actions
                 output = processor([
-                    funcs[key](value) for key, value in instructions.iteritems() \
+                    funcs[key](value) for key, value in six.iteritems(instructions) \
                     if funcs.get(key, False)
                 ])
 
@@ -122,7 +124,7 @@ def init_image_manipulation_api(app):
 
                 # Run Process Actions
                 output = processor([
-                    funcs[key](value) for key, value in instructions.iteritems() \
+                    funcs[key](value) for key, value in six.iteritems(instructions) \
                     if funcs.get(key, False)
                 ])
 

@@ -4,6 +4,7 @@
 """Tests for `mir` package."""
 
 
+from __future__ import absolute_import
 import unittest
 from click.testing import CliRunner
 

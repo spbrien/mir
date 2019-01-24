@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 import os
 import json
+from six.moves import range
 
 
 def find_root():
