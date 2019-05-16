@@ -7,6 +7,9 @@ import os
 import re
 import shutil
 
+import gevent.monkey
+gevent.monkey.patch_all()
+
 import click
 import requests
 

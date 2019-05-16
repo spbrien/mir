@@ -13,3 +13,4 @@ gevent
 PyJWT
 Pillow
 six
+PyYAML
