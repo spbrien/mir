@@ -92,8 +92,8 @@ def init_app(reload=False):
     settings['DOMAIN'] = get_models()
 
     if not reload:
-        settings['PUBLIC_METHODS'] = ['GET']
-        settings['PUBLIC_ITEM_METHODS'] = ['GET']
+        settings['PUBLIC_METHODS'] = ['GET', 'OPTIONS']
+        settings['PUBLIC_ITEM_METHODS'] = ['GET', 'OPTIONS']
 
     app = Eve(
         settings=settings,
