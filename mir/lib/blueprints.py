@@ -40,22 +40,6 @@ admin_static_dir = os.path.join(admin_dir, 'admin-assets')
 # -------------------------------
 
 def blueprint_factory(app):
-    # Default Admin Routes
-    if (app.config.get('CREATE_ADMIN_APP', False)):
-        @app.route('/admin/')
-        def index():
-            return template_factory(
-                {
-                    'token': session.get('token', None),
-                    'redirect': app.config.get('CUSTOM_AUTH_ENDPOINT', False)
-                },
-                os.path.join(admin_dir, 'index.html')
-            )
-
-        @app.route('/admin-assets/<path:filename>')
-        def admin_assets(filename):
-            return send_from_directory(admin_static_dir, filename)
-
     @app.route('/export/<resource>')
     def export(resource):
         token = request.headers.get("Authorization", None)
