@@ -112,7 +112,7 @@ def blueprint_factory(app):
                 valid_account = accounts.find_one(lookup)
                 valid_password = bcrypt.hashpw(
                     password.encode('utf-8'),
-                    valid_account['password'].encode('utf-8')
+                    valid_account['password']
                 ) == valid_account['password'] if valid_account else None
 
                 if valid_account and valid_password:
