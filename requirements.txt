@@ -15,3 +15,4 @@ PyJWT
 Pillow
 six
 PyYAML
+Werkzeug==0.15.1
