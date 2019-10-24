@@ -8,6 +8,10 @@ from __future__ import absolute_import
 import os
 import sys
 import multiprocessing
+
+import gevent.monkey
+gevent.monkey.patch_all()
+
 import gunicorn.app.base
 from gunicorn.six import iteritems
 
@@ -36,6 +40,7 @@ from .config import APP_DIR
 
 class jwtAuth(TokenAuth):
     def check_auth(self, token, allowed_roles, resource, method):
+        return True
         token = request.headers.get('Authorization')
         if token:
             try:
@@ -88,8 +93,8 @@ def init_app(reload=False):
     settings['DOMAIN'] = get_models()
 
     if not reload:
-        settings['PUBLIC_METHODS'] = ['GET']
-        settings['PUBLIC_ITEM_METHODS'] = ['GET']
+        settings['PUBLIC_METHODS'] = ['GET', 'OPTIONS']
+        settings['PUBLIC_ITEM_METHODS'] = ['GET', 'OPTIONS']
 
     app = Eve(
         settings=settings,
