@@ -15,7 +15,7 @@ requirements = [
     'ansible==2.5.0',
     'asn1crypto==0.24.0',
     'bcrypt==3.1.4',
-    'bleach==2.1.3',
+    'bleach==3.1.1',
     'boto3==1.6.18',
     'botocore==1.9.18',
     'Cerberus==0.9.2',
