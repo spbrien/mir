@@ -23,7 +23,7 @@ requirements = [
     'cffi==1.11.5',
     'chardet==3.0.4',
     'click==6.7',
-    'cryptography==2.2.2',
+    'cryptography==3.2',
     'docutils==0.14',
     'enum34==1.1.6',
     'Eve==0.7.8',
