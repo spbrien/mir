@@ -40,7 +40,7 @@ requirements = [
     'idna==2.6',
     'ipaddress==1.0.19',
     'itsdangerous==0.24',
-    'Jinja2==2.10',
+    'Jinja2==2.11.3',
     'jmespath==0.9.3',
     'MarkupSafe==0.23',
     'mock==2.0.0',
