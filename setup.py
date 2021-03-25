@@ -53,7 +53,7 @@ requirements = [
     'pymongo==3.6.1',
     'PyNaCl==1.2.1',
     'python-dateutil==2.6.1',
-    'PyYAML==3.12',
+    'PyYAML==5.4',
     'requests==2.18.4',
     's3transfer==0.1.13',
     'simplejson==3.13.2',
