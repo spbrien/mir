@@ -12,7 +12,7 @@ with open('HISTORY.md') as history_file:
     history = history_file.read()
 
 requirements = [
-    'ansible==2.5.0',
+    'ansible==2.10.0',
     'asn1crypto==0.24.0',
     'bcrypt==3.1.4',
     'bleach==2.1.3',
