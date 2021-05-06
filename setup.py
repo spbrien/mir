@@ -29,7 +29,7 @@ requirements = [
     'Eve==0.7.8',
     'Events==0.2.2',
     'Flask==0.12',
-    'Flask-Cors==3.0.3',
+    'Flask-Cors==3.0.9',
     'Flask-PyMongo==0.5.1',
     'funcsigs==1.0.2',
     'futures==3.2.0',
